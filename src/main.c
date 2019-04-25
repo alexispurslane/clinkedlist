@@ -2,14 +2,17 @@
 #include "linkedlist.h"
 
 int main() {
-    int value1 = 1;
-    LLNode_t *list = linkedlist_new_node(&value1, NULL, NULL);
+    int *value1 = malloc(sizeof(int));
+    *value1 = 1;
+    LLNode_t *list = linkedlist_new_node(value1, sizeof(int), NULL, NULL);
+    free(value1);
 
     LLNode_t *current = list;
     for (int i = 1; i < 100; i++) {
-        int *data = malloc((size_t)sizeof(int));
+        int *data = malloc(sizeof(int));
         *data = i + 1;
-        linkedlist_push(current, data);
+        linkedlist_push(current, data, sizeof(int));
+        free(data);
         current = current->next_node;
     }
 

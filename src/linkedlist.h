@@ -8,9 +8,9 @@ typedef struct LLNode {
     void *data;
 } LLNode_t;
 
-LLNode_t *linkedlist_new_node(void *data, LLNode_t *prev, LLNode_t *next);
+LLNode_t *linkedlist_new_node(void *data, size_t len, LLNode_t *prev, LLNode_t *next);
 
-LLNode_t *linkedlist_push(LLNode_t *head, void *data);
+LLNode_t *linkedlist_push(LLNode_t *head, void *data, size_t len);
 LLNode_t *linkedlist_remove(LLNode_t *head);
 LLNode_t *linkedlist_find_ith_from(LLNode_t *head, size_t idx);
 
