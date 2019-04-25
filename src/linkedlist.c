@@ -2,6 +2,7 @@
 
 LLNode_t *linkedlist_new_node(void *data, size_t len, LLNode_t *prev, LLNode_t *next) {
     LLNode_t *new_node = malloc((size_t)sizeof(LLNode_t));
+    new_node->data = malloc(len);
     memcpy(new_node->data, data, len);
     new_node->prev_node = prev;
     new_node->next_node = next;
@@ -38,6 +39,7 @@ LLNode_t *linkedlist_find_ith_from(LLNode_t *head, size_t idx) {
 void linkedlist_free(LLNode_t *head) {
     while (head != NULL) {
         LLNode_t *next = head->next_node;
+        free(head->data);
         free(head);
         head = next;
     }

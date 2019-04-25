@@ -2,17 +2,13 @@
 #include "linkedlist.h"
 
 int main() {
-    int *value1 = malloc(sizeof(int));
-    *value1 = 1;
-    LLNode_t *list = linkedlist_new_node(value1, sizeof(int), NULL, NULL);
-    free(value1);
+    int value1 = 1;
+    LLNode_t *list = linkedlist_new_node(&value1, sizeof(int), NULL, NULL);
 
     LLNode_t *current = list;
     for (int i = 1; i < 100; i++) {
-        int *data = malloc(sizeof(int));
-        *data = i + 1;
-        linkedlist_push(current, data, sizeof(int));
-        free(data);
+        int data = i + 1;
+        linkedlist_push(current, &data, sizeof(int));
         current = current->next_node;
     }
 
@@ -26,6 +22,7 @@ int main() {
     printf("The 20th item: %d\n", *(int *)item->data);
 
     linkedlist_remove(item);
+    free(item->data);
     free(item);
 
     LLNode_t *new_item = linkedlist_find_ith_from(list, 20);
