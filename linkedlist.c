@@ -1,16 +1,16 @@
 #include "linkedlist.h"
 
-LLNode_t *linkedlist_new_node(void *data, LLNode_t *prev, LLNode_t *next) {
+LLNode_t *linkedlist_new_node(void *data, size_t len, LLNode_t *prev, LLNode_t *next) {
     LLNode_t *new_node = malloc((size_t)sizeof(LLNode_t));
-    new_node->data = data;
+    memcpy(new_node->data, data, len);
     new_node->prev_node = prev;
     new_node->next_node = next;
 
     return new_node;
 }
 
-LLNode_t *linkedlist_push(LLNode_t *head, void *data) {
-    LLNode_t *new_node = linkedlist_new_node(data, head, head->next_node);
+LLNode_t *linkedlist_push(LLNode_t *head, void *data, size_t len) {
+    LLNode_t *new_node = linkedlist_new_node(data, len, head, head->next_node);
     head->next_node = new_node;
 
     return new_node;
